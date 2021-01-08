@@ -7,8 +7,8 @@ if(!Vars.headless){
 // rgb graphite press
 const graphite = new Effect(90, e => {
     Draw.color(Color.red.cpy().shiftHue(Time.time));
-    Lines.line(e.x + 8, e.y, e.x - 8, e.y);
-    Lines.line(e.x, e.y + 8, e.x, e.y - 8);
+    Draw.z(Layer.blockOver)
+    Draw.rect(Core.atlas.find("graphite-press"), e.x, e.y)
 });
 Blocks.graphitePress.craftEffect = graphite;
 
