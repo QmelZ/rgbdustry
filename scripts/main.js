@@ -28,7 +28,7 @@ const disco = extend(Block, "disco-projector", {
     drawPlace(x, y, rot, val){
         Draw.color(Color.red.cpy().shiftHue(Time.time));
         Lines.stroke(1.2);
-        Lines.poly(x * Vars.tilesize, y * Vars.tilesize, 4, 216, 45);
+        Lines.poly(x * Vars.tilesize, y * Vars.tilesize, 4, 216, Time.time);
     }
 });
 
@@ -38,7 +38,7 @@ disco.buildType = () => extend(Building, {
         Draw.rect(Core.atlas.find(this.block.region), this.x, this.y)
         Draw.z(Layer.shields);
         Draw.color(Color.red.cpy().shiftHue(Time.time))
-        Fill.poly(this.x, this.y, 4, 216, 45);
+        Fill.poly(this.x, this.y, 4, 216, Time.time);
         Draw.reset();
     }
 });
