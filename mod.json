@@ -1,8 +1,7 @@
 {
-    "name": "rgb-graphite-press",
-    "displayName": "RGB Graphite Press",
+    "name": "rgbdustry",
+    "displayName": "RGBdustry",
     "author": "QmelZ",
     "version": 1,
     "minGameVersion": 121,
-    "hidden": true,
 }
