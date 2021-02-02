@@ -40,13 +40,13 @@ disco.buildType = () => extend(Building, {
         Draw.z(Layer.shields);
         Draw.color(Color.red.cpy().shiftHue(Time.time));
         if(Core.settings.getBool("animatedshields")){
-            Fill.poly(x, y, 4, radius);
+            Fill.poly(this.x, this.y, 4, 216, Time.time);
         }else{
             Lines.stroke(1.5);
             Draw.alpha(0.17);
-            Fill.poly(x, y, 4, radius);
+            Fill.poly(this.x, this.y, 4, 216, Time.time);
             Draw.alpha(1);
-            Lines.poly(x, y, 4, radius);
+            Fill.poly(this.x, this.y, 4, 216, Time.time);
             Draw.reset();
         }
         
