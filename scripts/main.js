@@ -42,11 +42,11 @@ disco.buildType = () => extend(Building, {
         if(Core.settings.getBool("animatedshields")){
             Fill.poly(x, y, 6, radius);
         }else{
-            Lines.stroke(1.5f);
-            Draw.alpha(0.09f + Mathf.clamp(0.08f * hit));
-            Fill.poly(x, y, 6, radius);
-            Draw.alpha(1f);
-            Lines.poly(x, y, 6, radius);
+            Lines.stroke(1.5);
+            Draw.alpha(0.17);
+            Fill.poly(x, y, 4, radius);
+            Draw.alpha(1);
+            Lines.poly(x, y, 4, radius);
             Draw.reset();
         }
         
