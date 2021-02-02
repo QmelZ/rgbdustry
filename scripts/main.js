@@ -36,9 +36,20 @@ disco.buildType = () => extend(Building, {
     draw(){
         Draw.z(Layer.block);
         Draw.rect(Core.atlas.find(this.block.region), this.x, this.y)
+        
         Draw.z(Layer.shields);
         Draw.color(Color.red.cpy().shiftHue(Time.time))
-        Fill.poly(this.x, this.y, 4, 216, Time.time);
+        if(Core.settings.getBool("animatedshields")){
+            Fill.poly(x, y, 6, radius);
+        }else{
+            Lines.stroke(1.5f);
+            Draw.alpha(0.09f + Mathf.clamp(0.08f * hit));
+            Fill.poly(x, y, 6, radius);
+            Draw.alpha(1f);
+            Lines.poly(x, y, 6, radius);
+            Draw.reset();
+        }
+        
         Draw.reset();
     }
 });
