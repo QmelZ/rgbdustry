@@ -35,10 +35,10 @@ const disco = extend(Block, "disco-projector", {
 disco.buildType = () => extend(Building, {
     draw(){
         Draw.z(Layer.block);
-        Draw.rect(Core.atlas.find(this.block.region), this.x, this.y)
+        Draw.rect(Core.atlas.find(this.block.region), this.x, this.y);
         
         Draw.z(Layer.shields);
-        Draw.color(Color.red.cpy().shiftHue(Time.time))
+        Draw.color(Color.red.cpy().shiftHue(Time.time));
         if(Core.settings.getBool("animatedshields")){
             Fill.poly(x, y, 6, radius);
         }else{
