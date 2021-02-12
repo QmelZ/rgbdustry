@@ -5,51 +5,36 @@ if(!Vars.headless){
 };
 
 // rgb graphite press
-const graphite = new Effect(90, e => {
-    Draw.color(Color.red.cpy().shiftHue(Time.time));
-    Draw.z(Layer.blockOver)
-    Draw.rect(Core.atlas.find("graphite-press"), e.x, e.y)
-});
-Blocks.graphitePress.craftEffect = graphite;
-
-// rgb force projector (code to steal)
-const disco = extend(Block, "disco-projector", {
-    localizedName: "Disco Projector",
-    description: "It's also square.",
-    buildVisibility: BuildVisibility.shown,
-    size: 3,
-    destructible: true,
-    update: true,
-    category: Category.effect,
-    alwaysUnlocked: true,
-    icons(){
-        return [Core.atlas.find(this.region)];
-    },
-    drawPlace(x, y, rot, val){
-        Draw.color(Color.red.cpy().shiftHue(Time.time));
-        Lines.stroke(1.2);
-        Lines.poly(x * Vars.tilesize, y * Vars.tilesize, 4, 216, Time.time);
+Blocks.graphitePress.buildType = () => extend(GenericCrafter.GenericCrafterBuild, Blocks.graphitePress, {
+    draw(){
+        if(this.cons.valid()){
+            Draw.color(Color.red.cpy().shiftHue(Time.time));
+        }else{
+            Draw.color();
+        }
+        Draw.rect("graphite-press", this.x, this.y);
     }
 });
 
-disco.buildType = () => extend(Building, {
-    draw(){
-        Draw.z(Layer.block);
-        Draw.rect(Core.atlas.find(this.block.region), this.x, this.y);
-        
-        Draw.z(Layer.shields);
-        Draw.color(Color.red.cpy().shiftHue(Time.time));
-        if(Core.settings.getBool("animatedshields")){
-            Fill.poly(this.x, this.y, 4, 216, Time.time);
-        }else{
-            Lines.stroke(1.5);
-            Draw.alpha(0.17);
-            Fill.poly(this.x, this.y, 4, 216, Time.time);
-            Draw.alpha(1);
-            Fill.poly(this.x, this.y, 4, 216, Time.time);
-            Draw.reset();
+// rgb force projector
+Blocks.forceProjector.buildType = () => extend(ForceProjector.ForceBuild, Blocks.forceProjector, {
+    drawShield(){
+        if(!this.broken){
+            let radius = this.realRadius();
+            
+            Draw.z(Layer.shields);
+            Draw.color(Color.red.cpy().shiftHue(Time.time), Color.white, Mathf.clamp(this.hit));
+            if(Core.settings.getBool("animatedshields")){
+                Fill.poly(this.x, this.y, 6, radius);
+            }else{
+                Lines.stroke(1.5);
+                Draw.alpha(0.09 + Mathf.clamp(0.08 * this.hit));
+                Fill.poly(this.x, this.y, 6, radius);
+                Draw.alpha(1);
+                Lines.poly(this.x, this.y, 6, radius);
+                Draw.reset();
+            }
         }
-        
         Draw.reset();
     }
 });
