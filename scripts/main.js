@@ -38,3 +38,13 @@ Blocks.forceProjector.buildType = () => extend(ForceProjector.ForceBuild, Blocks
         Draw.reset();
     }
 });
+
+// rgb meltdown laser
+Events.run(Trigger.update, () => {
+    Blocks.meltdown.shootType.colors = [
+        Color.red.cpy().shiftHue(Time.time),
+        Color.red.cpy().shiftHue(Time.time).shiftSaturation(-0.2),
+        Color.red.cpy().shiftHue(Time.time).shiftSaturation(-0.4),
+        Color.red.cpy().shiftHue(Time.time).shiftSaturation(-0.6)
+    ]
+});
