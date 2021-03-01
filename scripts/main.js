@@ -48,3 +48,23 @@ Events.run(Trigger.update, () => {
         Color.red.cpy().shiftHue(Time.time).shiftSaturation(-0.6)
     ]
 });
+
+// rgb Color and Pal
+Events.on(ClientLoadEvent, () => {
+    Events.run(Trigger.update, () => {
+        Object.keys(Color).forEach(e => {
+            let gay = Color.valueOf("ff0000").shiftHue(Time.time);
+            let color = Color[e];
+            color.r = gay.r;
+            color.g = gay.g;
+            color.b = gay.b;
+        });
+        Object.keys(Pal).forEach(e => {
+            let gay = Color.valueOf("ff0000").shiftHue(Time.time);
+            let color = Pal[e];
+            color.r = gay.r;
+            color.g = gay.g;
+            color.b = gay.b;
+        });
+    });
+});
